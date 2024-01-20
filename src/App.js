@@ -12,7 +12,7 @@ function App() {
   return (
     <>
     <h1 className='my-4 w-full flex justify-center font-bold text-4xl'>
-      Shop Here
+      Quick Mart
     </h1>
     <BrowserRouter>
   <Routes>
