@@ -53,7 +53,7 @@ export default function Header() {
 
   return (
     <div className='sticky top-0 bg-white p-0'>
-    <div className='p-0 flex justify-around border-b-2 border-black-5'>
+    <div className='p-0 flex justify-between border-b-2 border-black-5  overflow-x-scroll snap-x scrollbar-hide'>
 
       <div className='py-2 px-5 flex justify-center items-center border-r-2 border-black-5'>
 

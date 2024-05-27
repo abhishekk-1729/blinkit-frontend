@@ -38,7 +38,7 @@ export default function ProductDesc({_id,name,price,picture,description}) {
 
 <div className="w-full h-full bg-[#FFFFFF] border-2  rounded-xl shadow-xl pb-2 my-2">
    <div className="px-4"> 
-   <img class="h-auto max-w-full rounded-lg" src={`/production/${picture}`} alt=""/>
+   <img class="h-auto w-full rounded-lg" src={`/production/${picture}`} alt=""/>
    </div> 
    <div className='px-2'>
    <div className="flex inline-flex p-1 border bg-[#EFF2F7] rounded-xl"> 

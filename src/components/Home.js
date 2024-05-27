@@ -68,7 +68,7 @@ export default function Home() {
             </div>
             <div className='flex  overflow-x-scroll snap-x scrollbar-hide gap-4'>
             {productInfo.filter(p => p.category === categoryName).map(product => (
-              <div className='flex-none w-1/6'>
+              <div className='flex-none lg:w-1/6'>
                 <ProductDesc _id={product._id} name={product.productName} price = {product.price} description={product.quantity} picture={product.productImage}/>
               </div>
             ))}
