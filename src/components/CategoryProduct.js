@@ -7,7 +7,7 @@ import { useAuth } from '../store/auth';
 export default function CategoryProduct() {
 
 
-    const categories = ["Paan Corner","Cold Drink and Juices","Snacks & Munchies","Breakfast Instant","Sweet Tooth","Masala","Pharma & Wellness"];
+    const categories = ["Paan Corner","Cold Drink & Juices","Snacks & Munchies","Breakfast Instant","Sweet Tooth","Masala","Pharma & Wellness"];
 
     const params = useParams();
     const {productInfo,setProductInfo} = useAuth();

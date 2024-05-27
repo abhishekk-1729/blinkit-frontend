@@ -21,6 +21,8 @@ export default function OtpVerify() {
         console.log(OTP);
         if(otp===OTP){
             console.log("same");
+            console.log(phone);
+            
             storeTokenInLS(token);
             setPhone(phone);
             //token system will be there

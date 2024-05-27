@@ -32,6 +32,7 @@ export default function Login() {
             // storeTokenInLS(res_result.token);
             setPhone(phone);
             console.log(res_result.otp);
+            console.log(res_result.token);
         }
         else{
             console.log(res_result.otp);

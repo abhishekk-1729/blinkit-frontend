@@ -60,6 +60,7 @@ export default function Header() {
         <Link to="/">
         <div className=''>
         <img src="/logo.png" alt="" height="70px" width="140px"/>
+       
         </div>
         </Link>
 
