@@ -22,11 +22,11 @@ export default function Home() {
  
     <Layout>
 
-<div class="">
-  <img class="object-fill my-4 " src={"/cover/pan.jpg"}/>
+<div class="flex justify-center items-center">
+  <img class="" src={"/cover/pan.jpg"}/>
 </div>
 
-<div className='flex overflow-x-scroll my-4 mr-4 gap-4 p-4 snap-x scrollbar-hide'>
+<div className='flex overflow-x-scroll  mr-4 gap-4 p-4 snap-x scrollbar-hide'>
   <img className='w-1/4' src="/cover/Pharmacy.jpg" alt="" />
   <img className='w-1/4' src="/cover/printouts.jpg" alt="" />
   <img className='w-1/4' src="/cover/diaper.jpg" alt="" />
@@ -34,7 +34,7 @@ export default function Home() {
 </div>
 
 
-<div className='grid grid-cols-10 gap-1 my-4'>
+<div className='grid grid-cols-10 gap-1'>
 {categoryInfo  .sort((a, b) => a.categoryNumber - b.categoryNumber).map((cur, index) => {
   const { category, categoryImage } = cur;
   return (
@@ -59,16 +59,16 @@ export default function Home() {
         {[...new Set(productInfo.map(p => p.category))].map(categoryName => (
           <div key={categoryName} >
             {productInfo.find(p=>p.category===categoryName)&&(
-              <div className='m-10'>
+              <div className='p-2'>
                 <div className='flex justify-between items-center'>
             <h2 className='text-2xl py-5 capitalize'>{categoryName} </h2>
             <Link to={`/allProduct/${categoryName}`}>
             <div className='text-[#0D831E]'>see all</div>
             </Link>
             </div>
-            <div className='flex -mx-5 overflow-x-scroll snap-x scrollbar-hide gap-2'>
+            <div className='flex  overflow-x-scroll snap-x scrollbar-hide gap-4'>
             {productInfo.filter(p => p.category === categoryName).map(product => (
-              <div className='flex-none w-1/5'>
+              <div className='flex-none w-1/6'>
                 <ProductDesc _id={product._id} name={product.productName} price = {product.price} description={product.quantity} picture={product.productImage}/>
               </div>
             ))}

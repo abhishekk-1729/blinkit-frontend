@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Layout from './Layout';
 
 
 export default function Foot() {
@@ -12,7 +13,8 @@ export default function Foot() {
   ,"Deliver"
   ,"Resources"]
   return (
-    <div className='mx-12 my-6'>
+    <Layout>
+    <div className=' my-6'>
             <div className='flex '>
               <div className='flex flex-col w-2/6'>
                 <div className='my-4'>Useful Links</div>
@@ -65,5 +67,7 @@ export default function Foot() {
     <div className='px-2 mb-3'>“Blinkit” is owned & managed by "Blink Commerce Private Limited" (formerly known as Grofers India Private Limited) and is not related, linked or interconnected in whatsoever manner or nature, to “GROFFR.COM” which is a real estate services business operated by “Redstone Consultancy Services Private Limited”.
     </div>
     </div>
+    </Layout>
   )
+
 }

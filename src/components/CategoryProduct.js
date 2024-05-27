@@ -14,6 +14,8 @@ export default function CategoryProduct() {
     const [subCat, setSubCat] = useState([...new Set(productInfo.filter(p => p.category === params.id).map(p => p.subCategory))][0]);
 
 
+
+
   return (
     <>
 
