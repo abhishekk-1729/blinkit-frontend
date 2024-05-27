@@ -5,6 +5,7 @@ export default function ProductDesc({_id,name,price,picture,description}) {
     
     const {setSelectedProducts} = useAuth();
 
+
     const handleSubmit = () =>{
         setSelectedProducts(prev=>[...prev,_id]);
     }
@@ -31,9 +32,9 @@ export default function ProductDesc({_id,name,price,picture,description}) {
           </div> */}
 
 
-<div className="flex-column p-2 bg-[#FFFFFF] rounded-l">
+<div className="h-full p-2 bg-[#FFFFFF]  rounded-l shadow-md">
    <div className="px-4"> 
-   <img class="h-auto max-w-full rounded-lg" src={`/production/${picture}`} alt=""/>
+   <img class="h-auto max-w-full rounded-lg" src={`/production/01010001UP.png`} alt=""/>
    </div> 
    <div className="flex inline-flex p-1 border bg-[#EFF2F7] rounded-xl"> 
    <img src="/utils/clock.png" alt="" height="18px" width="23px" />
@@ -42,12 +43,12 @@ export default function ProductDesc({_id,name,price,picture,description}) {
        </div>
         <div>{name}
           </div>
-           <div className="flex justify-between p-2 border rounded-l"> 
-           <div>{description}
+           <div className="py-2"> 
+           <div>{"20g"}
             </div> 
-           <img src="/svg/dropdown.svg" alt="" height="20px" width="20px" />
+           {/* <img src="/svg/dropdown.svg" alt="" height="20px" width="20px" /> */}
             </div> 
-            <div className="flex justify-between mt-1">
+            <div className="flex justify-between mt-1 items-center">
                <div>$ {price}</div> 
                <div className="py-2 px-4 rounded-xl border border-[#328616] bg-[#F6FFF8] text-[#328616]">ADD</div> 
                </div> 

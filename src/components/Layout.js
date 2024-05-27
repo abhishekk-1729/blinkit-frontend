@@ -5,7 +5,7 @@ export default function Layout({children}) {
   return (
     <>
 
-    <div className=''>
+    <div className='mx-14'>
       {children}
     </div>
     </>

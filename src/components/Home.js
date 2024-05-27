@@ -22,24 +22,38 @@ export default function Home() {
  
     <Layout>
 
+<div class="">
+  <img class="object-fill my-4 " src={"/cover/pan.jpg"}/>
+</div>
+
+<div className='flex overflow-x-scroll m-4 gap-4 p-4 snap-x scrollbar-hide'>
+  <img className='w-1/4' src="/cover/Pharmacy.jpg" alt="" />
+  <img className='w-1/4' src="/cover/printouts.jpg" alt="" />
+  <img className='w-1/4' src="/cover/diaper.jpg" alt="" />
+  <img className='w-1/4' src="/cover/pet.jpg" alt="" />
+</div>
+
+
+<div className='grid grid-cols-10 gap-1 m-5'>
 {categoryInfo.map((cur, index) => {
   const { category, categoryImage } = cur;
   return (
-    <div key={index}>
-      <div>
-        {category}
-      </div>
+   
+    <div key={index} >
+      <Link to={`/allProduct/${category}`}>
       <div>
         {categoryImage ? (
           <img src={`/production/category/${categoryImage.slice(0, -4)}.png`} alt={category} />
         ) : (
           <img src="/production/category/15.png" alt={""} /> // Optional: Default image path
-        )}
-      </div>
+        )}</div>
+  </Link>
     </div>
+    
   );
-})}
 
+})}
+ </div>
 
       <div >
         {[...new Set(productInfo.map(p => p.category))].map(categoryName => (
@@ -49,12 +63,12 @@ export default function Home() {
                 <div className='flex justify-between items-center'>
             <h2 className='text-2xl py-5 capitalize'>{categoryName} </h2>
             <Link to={`/allProduct/${categoryName}`}>
-            <div>See All</div>
+            <div className='text-[#0D831E]'>see all</div>
             </Link>
             </div>
-            <div className='flex -mx-5 overflow-x-scroll snap-x scrollbar-hide'>
+            <div className='flex -mx-5 overflow-x-scroll snap-x scrollbar-hide gap-2'>
             {productInfo.filter(p => p.category === categoryName).map(product => (
-              <div className='px-5 snap-start'>
+              <div className='flex-none w-1/5'>
                 <ProductDesc _id={product._id} name={product.productName} price = {product.price} description={product.description} picture={product.productImage}/>
               </div>
             ))}

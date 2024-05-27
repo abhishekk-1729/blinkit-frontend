@@ -63,7 +63,7 @@ export default function CategoryProduct() {
       {productInfo.filter(p => p.subCategory === subCat).map(product => (
                  
                    
-      <ProductDesc _id={product._id} productName={product.productName} price = {product.price} description={product.quantity} picture={product.productImage}/>
+      <ProductDesc _id={product._id} name={product.productName} price = {product.price} description={product.quantity} picture={product.productImage}/>
       ))}
 
       </div>
