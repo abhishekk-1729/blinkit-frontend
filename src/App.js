@@ -11,9 +11,11 @@ function App() {
 
   return (
     <>
+    <div>
     <h1 className='my-4 w-full flex justify-center font-bold text-4xl'>
       Quick Mart
     </h1>
+    </div>
     <BrowserRouter>
   <Routes>
   <Route path = "/" element={<Home/>}/>
