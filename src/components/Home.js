@@ -26,7 +26,7 @@ export default function Home() {
   <img class="object-fill my-4 " src={"/cover/pan.jpg"}/>
 </div>
 
-<div className='flex overflow-x-scroll m-4 gap-4 p-4 snap-x scrollbar-hide'>
+<div className='flex overflow-x-scroll my-4 mr-4 gap-4 p-4 snap-x scrollbar-hide'>
   <img className='w-1/4' src="/cover/Pharmacy.jpg" alt="" />
   <img className='w-1/4' src="/cover/printouts.jpg" alt="" />
   <img className='w-1/4' src="/cover/diaper.jpg" alt="" />
@@ -34,8 +34,8 @@ export default function Home() {
 </div>
 
 
-<div className='grid grid-cols-10 gap-1 m-5'>
-{categoryInfo.map((cur, index) => {
+<div className='grid grid-cols-10 gap-1 my-4'>
+{categoryInfo  .sort((a, b) => a.categoryNumber - b.categoryNumber).map((cur, index) => {
   const { category, categoryImage } = cur;
   return (
    
@@ -43,7 +43,7 @@ export default function Home() {
       <Link to={`/allProduct/${category}`}>
       <div>
         {categoryImage ? (
-          <img src={`/production/category/${categoryImage.slice(0, -4)}.png`} alt={category} />
+          <img src={`/production/category/${categoryImage}`} alt={category} />
         ) : (
           <img src="/production/category/15.png" alt={""} /> // Optional: Default image path
         )}</div>
@@ -69,7 +69,7 @@ export default function Home() {
             <div className='flex -mx-5 overflow-x-scroll snap-x scrollbar-hide gap-2'>
             {productInfo.filter(p => p.category === categoryName).map(product => (
               <div className='flex-none w-1/5'>
-                <ProductDesc _id={product._id} name={product.productName} price = {product.price} description={product.description} picture={product.productImage}/>
+                <ProductDesc _id={product._id} name={product.productName} price = {product.price} description={product.quantity} picture={product.productImage}/>
               </div>
             ))}
              </div>

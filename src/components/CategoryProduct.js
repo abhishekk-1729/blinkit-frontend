@@ -39,12 +39,15 @@ export default function CategoryProduct() {
     <div className='flex justify-center border-l-2 border-b-2 border-r-2  mx-16'>
     <div className='flex flex-col pt-2 w-1/5 border-black-5'>
       {[...new Set(productInfo.filter(p => p.category === params.id).map(p => p.subCategory))].map(cur=>{
+        
+        const product = productInfo.find(p => p.subCategory === cur);
+
         return (
           <>
 
             <button onClick={()=>{setSubCat(cur);}} className={(subCat==cur)?'flex p-2 items-center gap-1 border-l-4 border-[#23963F] bg-[#EBFEEF]':"flex p-2 items-center gap-1"}>
               <div className='rounded-xl bg-[#F6FEF8]'>
-                <img src="/utils/coke_1.png" height={"10px"} width={"40px"}alt="" />
+                <img src={`/production/subCategory/${product.subCategoryNumber}.png`} height={"10px"} width={"40px"}alt="" />
                 </div>
                 <div>{cur}</div>
             </button>

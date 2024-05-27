@@ -34,7 +34,7 @@ export default function ProductDesc({_id,name,price,picture,description}) {
 
 <div className="h-full p-2 bg-[#FFFFFF]  rounded-l shadow-md">
    <div className="px-4"> 
-   <img class="h-auto max-w-full rounded-lg" src={`/production/01010001UP.png`} alt=""/>
+   <img class="h-auto max-w-full rounded-lg" src={`/production/${"0405001UP.png"}`} alt=""/>
    </div> 
    <div className="flex inline-flex p-1 border bg-[#EFF2F7] rounded-xl"> 
    <img src="/utils/clock.png" alt="" height="18px" width="23px" />
@@ -44,7 +44,7 @@ export default function ProductDesc({_id,name,price,picture,description}) {
         <div>{name}
           </div>
            <div className="py-2"> 
-           <div>{"20g"}
+           <div>{description}
             </div> 
            {/* <img src="/svg/dropdown.svg" alt="" height="20px" width="20px" /> */}
             </div> 
