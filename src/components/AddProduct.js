@@ -12,9 +12,9 @@ export default function AddProduct() {
     const {productInfo} = useAuth();
   return (
     <div>
-        <h1>Number of Products: {productInfo} </h1>
+        <h1>Number of Products: {productInfo.length} </h1>
 <div className="bg-gray-100 py-10 flex justify-center">
-   
+
   <form onSubmit={handleSubmit} class="bg-white p-6 rounded-md shadow-md w-full max-w-md">
     <div class="mb-4">
       <label for="category" class="block text-sm font-medium text-gray-700">Category</label>

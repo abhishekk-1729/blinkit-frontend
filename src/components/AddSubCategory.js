@@ -11,7 +11,7 @@ export default function AddSubCategory() {
 
   return (
     <div>
-    <h1>Number of Sub Categories: {productInfo} </h1>
+    <h1>Number of Sub Categories: {[...new Set(productInfo.map(p => p.subCategory))].length} </h1>
 <div class="py-10 flex justify-center">
   <form onsubmit= {handleSubmit} class="bg-white p-6 rounded-md shadow-md w-full max-w-sm">
     <div class="mb-4">

@@ -6,12 +6,12 @@ export default function AddCategory() {
     const handleSubmit = (e) => {
         e.preventDefault();
     }
-    const {productInfo} = useAuth();
+    const {categoryInfo} = useAuth();
 
 
   return (
     <div>
-         <h1>Number of Categories: {productInfo} </h1>
+         <h1>Number of Categories: {categoryInfo.length} </h1>
 <div class="py-10 flex justify-center">
   <form onsubmit= {handleSubmit} class="bg-white p-6 rounded-md shadow-md w-full max-w-sm">
     <div class="mb-4">
