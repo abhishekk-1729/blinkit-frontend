@@ -9,9 +9,59 @@ import Login from './Login';
 
 
 export default function Header() {
+  const {phone,addresses} = useAuth();
 
 
-    const {input,setInput} = useAuth();
+    const [phoneAddress, setPhoneAddress] = useState();
+    const [addressAddress, setAddressAddress] = useState();
+    const [nameAddress, setNameAddress] = useState();
+    const [isComplete, setIsComplete] = useState(false);
+
+    const handleSubmit = async (e) => {
+
+      e.preventDefault();
+
+      const data = {phone:phone,address:addressAddress,phoneNumber:phoneAddress,name:nameAddress};
+          try {
+
+            const response = await fetch(`http://localhost:8000/api/address/addAddressPhone`,{
+                method:"POST",
+                headers:{
+                  'Content-Type':"application/json"
+              },
+              body: JSON.stringify(data)
+
+            });
+
+            const res_data = await response.json();
+            console.log(res_data);
+            if (response.ok){
+                console.log("yay");
+            }
+            
+            
+          } catch (error) {
+            console.log(error)
+          }
+    }
+
+    const handleInput1 = (e) => {
+          setNameAddress(e.target.value);
+    }
+    const handleInput2 = (e) => {
+      setAddressAddress(e.target.value);
+    }
+    const handleInput3 = (e) => {
+      const input = e.target.value;
+      if (/^\d*$/.test(input) && input.length <= 10) {
+        setPhoneAddress(input);
+        setIsComplete(input.length === 10);
+      }
+    };
+
+
+
+    const {input,setInput,token} = useAuth();
     const [placeholderText, setPlaceholderText] = useState(""); // Initial placeholder text
     const placeholderList = ['Search "rice"', 'Search "egg"', 'Search "butter"', 'Search "paneer"','Search "milk"','Search "bread"','Search "curd"','Search "sugar"','Search "chips"','Search "chocholate"']; // List of placeholder values
   
@@ -26,7 +76,7 @@ export default function Header() {
 
     const location = useLocation();
     const path = location.pathname;
-    const {phone,addresses} = useAuth();
+
 
     const [tryLogin,setTryLogin] = useState(false);
     const [address,setAddress] = useState(false);
@@ -89,7 +139,7 @@ export default function Header() {
               
               <div>
                 Home - 
-              {' Girnar House'}
+              {' Girnar '}
               </div>
 
               <button type="button" className="justify-self-end" id="menu-button" aria-expanded="true" aria-haspopup="true">
@@ -167,24 +217,78 @@ export default function Header() {
         </div>
         
     </div>
+
+
     {address?
-    <div ref={dropdownRef} className='address-dropdown w-1/3 z-2 mx-20 p-4 flex-column  bg-[#F3F6FB]' role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-      <div className='p-3'>
-    <div className='flex justify-between items-center'>
-    <button onClick={()=>{}} className={`my-2 py-2 px-4 rounded-xl border border-[#328616] bg-[#F6FFF8] text-[#328616]`}>
-      Add Address
-    </button>
+    <div ref={dropdownRef} className='address-dropdown w-1/3 z-2 mx-20 p-6 flex-column  bg-[#F3F6FB]' role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+
+          <div className='flex justify-end items-center'>
+
+
+                  <svg onClick={()=>{setAddress(false)}} xmlns="http://www.w3.org/2000/svg" fill="#000000" height="10px" width="10px" version="1.1" id="Capa_1" viewBox="0 0 490 490" >
+              <polygon points="11.387,490 245,255.832 478.613,490 489.439,479.174 255.809,244.996 489.439,10.811 478.613,0 245,234.161   11.387,0 0.561,10.811 234.191,244.996 0.561,479.174 "/>
+              </svg>
+
+          </div>
+    
+    {token?<>
 
     <div>
-    <svg onClick={()=>{setAddress(false)}} xmlns="http://www.w3.org/2000/svg" fill="#000000" height="10px" width="10px" version="1.1" id="Capa_1" viewBox="0 0 490 490" >
-<polygon points="11.387,490 245,255.832 478.613,490 489.439,479.174 255.809,244.996 489.439,10.811 478.613,0 245,234.161   11.387,0 0.561,10.811 234.191,244.996 0.561,479.174 "/>
-</svg>
-    </div>
-    </div>
-    <div>Your saved addresses</div>
-    </div>
 
-    <div className='flex-column overflow-y-auto h-80'>
+      <form onSubmit={handleSubmit} className='flex flex-col gap-1'>
+
+
+                          <input type="text"
+                          name = "nameAddress"
+                          placeholder="Enter Name"
+                          id="nameAddress"
+                          required
+                          autoComplete="on"
+                          value={nameAddress}
+                          onChange={handleInput1}
+                          className='bg-gray-100 w-full border-2 outline-none rounded-xl p-2'
+                           />
+
+
+                          <input type="text"
+                          name = "addressAddress"
+                          placeholder="Enter Address"
+                          id="addressAddress"
+                          required
+                          autoComplete="on"
+                          value={addressAddress}
+                          onChange={handleInput2}
+                          className='bg-gray-100 w-full border-2 outline-none rounded-xl p-2'
+                           />
+
+        <div className='flex justify-center items-center bg-gray-100 w-full border-2   rounded-xl gap-2'>
+                         <div className='mx-2'>
+                          +91
+                         </div>
+                          <input type="phone"
+                          name = "phoneAddress"
+                          placeholder="Enter Phone Number"
+                          id="phoneAddress"
+                          required
+                          autoComplete="on"
+                          value={phoneAddress}
+                          onChange={handleInput3}
+                          className='bg-gray-100 w-full border-none outline-none rounded-xl p-2'
+                           />
+        </div>
+
+                
+                          <button onClick={()=>{}} className={`mt-2 inline-flex w-full justify-center rounded-xl p-4 text-sm font-semibold text-white shadow-sm sm:w-full bg-[#0D831E] hover:bg-[#0D831E]' `}>
+            Add Address
+          </button>
+      </form>
+
+
+
+      <div className='mt-2'>Choose address</div>
+  
+
+    <div className='flex-column overflow-y-auto max-h-60'>
         {
           addresses.map((cur)=>{
             return (
@@ -211,18 +315,27 @@ export default function Header() {
                         </div></button></div>
                    
                     </div>
+                    
                     </div>
                    
 
               </div>
+              
+
+              
               </>
             )
           })
         }
     </div>
+    </div>
+    </>:<>Please Login</>}
 
 </div>
     :<></>}
+
+
+
 
     {tryLogin?<Login dropdownRef={dropdownRef} setTryLogin={setTryLogin} tryLogin={tryLogin} />:<></>}
     </div>

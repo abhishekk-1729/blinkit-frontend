@@ -638,7 +638,7 @@ export const AuthProvider = ({children}) => {
         return localStorage.removeItem("token");
     }
     
-    return <AuthContext.Provider value={{isLoggedIn,LogoutUser,storeTokenInLS, selectedProducts,setSelectedProducts,productInfo,setProductInfo,addresses,setAddresses,phone,setPhone,categoryInfo}}>
+    return <AuthContext.Provider value={{token,isLoggedIn,LogoutUser,storeTokenInLS, selectedProducts,setSelectedProducts,productInfo,setProductInfo,addresses,setAddresses,phone,setPhone,categoryInfo}}>
         {children}
     </AuthContext.Provider>
 }
