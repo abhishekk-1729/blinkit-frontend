@@ -559,48 +559,48 @@ export const AuthProvider = ({children}) => {
 
 
 
-    // const getAllProducts = async()=> {
-    //     try {
-    //         const response = await fetch("http://localhost:8000/api/products/getAllProducts",{ 
-    //         method:"GET"
-    //       });
+    const getAllProducts = async()=> {
+        try {
+            const response = await fetch("http://localhost:8000/api/products/getAllProducts",{ 
+            method:"GET"
+          });
     
-    //       if(response.ok){
-    //         const res_data = await response.json();
-    //         setProductInfo(res_data);
-    //         console.log(res_data);
-    //       }
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   }
+          if(response.ok){
+            const res_data = await response.json();
+            setProductInfo(res_data);
+            console.log(res_data);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
         
-    //   const categoriesName = [...new Set(productInfo.map(p=>p.category))];
-    //   console.log({categoriesName});
+      const categoriesName = [...new Set(productInfo.map(p=>p.category))];
+      console.log({categoriesName});
     
-    //   useEffect(()=>{
-    //     getAllProducts();
-    //   },[])
+      useEffect(()=>{
+        getAllProducts();
+      },[])
 
-    // const getAllCategory = async()=> {
-    //     try {
-    //         const response = await fetch("http://localhost:8000/api/products/getAllCategory",{ 
-    //         method:"GET"
-    //       });
+    const getAllCategory = async()=> {
+        try {
+            const response = await fetch("http://localhost:8000/api/products/getAllCategory",{ 
+            method:"GET"
+          });
     
-    //       if(response.ok){
-    //         const res_data = await response.json();
-    //         setCategoryInfo(res_data);
-    //         console.log("ca",res_data);
-    //       }
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   }
+          if(response.ok){
+            const res_data = await response.json();
+            setCategoryInfo(res_data);
+            console.log("ca",res_data);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
-    //   useEffect(()=>{
-    //     getAllCategory();
-    //   },[])
+      useEffect(()=>{
+        getAllCategory();
+      },[])
 
     const fetchAddress = async() => {
         try {

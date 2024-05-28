@@ -29,7 +29,7 @@ function App() {
         </Route>
         <Route path = "/checkout" element={<Checkout/>}/>
         <Route path = "/otp" element={<OtpVerify/>}/>
-        <Route path = "/login" element={<Login/>}/>
+ 
         <Route path = "/admin" element={<Admin/>}>
         <Route path = "addProduct" element={<AddProduct/>}/>
         <Route path = "addCategory" element={<AddCategory/>}/>

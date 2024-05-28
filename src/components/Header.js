@@ -1,9 +1,10 @@
-import {React,useEffect,useState}from 'react'
+import {React,useEffect,useState,useRef}from 'react'
 import { useLocation } from "react-router-dom";
 import { useRoute } from '@react-navigation/native';
 import { NavLink,Link } from 'react-router-dom';
 import { useAuth } from '../store/auth';
 import "../App.css"
+import Login from './Login';
 // import './App.css';
 
 
@@ -18,19 +19,28 @@ export default function Header() {
       const intervalId = setInterval(() => {
         const nextIndex = (placeholderList.indexOf(placeholderText) + 1) % placeholderList.length;
         setPlaceholderText(placeholderList[nextIndex]);
-      }, 2000); // Update placeholder every 2 seconds
+      }, 2000);
   
-      return () => clearInterval(intervalId); // Cleanup function to prevent memory leaks
-    }, [placeholderList, placeholderText]); // Ensure useEffect runs only when dependencies change
+      return () => clearInterval(intervalId); 
+    }, [placeholderList, placeholderText]);
 
     const location = useLocation();
     const path = location.pathname;
     const {phone,addresses} = useAuth();
-    // console.log({path});
 
+    const [tryLogin,setTryLogin] = useState(false);
     const [address,setAddress] = useState(false);
+    const dropdownRef = useRef(null);
 
- 
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setAddress(false);
+        setTryLogin(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    
     const handleDeleteUser = async (id) =>{
 
       console.log(id);
@@ -82,13 +92,13 @@ export default function Header() {
               {' Girnar House'}
               </div>
 
-              <div className="justify-self-end">
+              <button type="button" className="justify-self-end" id="menu-button" aria-expanded="true" aria-haspopup="true">
 
                 <svg onClick={()=>{setAddress(!address)}} xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24" fill="none">
                 <path d="M11.1808 15.8297L6.54199 9.20285C5.89247 8.27496 6.55629 7 7.68892 7L16.3111 7C17.4437 7 18.1075 8.27496 17.458 9.20285L12.8192 15.8297C12.4211 16.3984 11.5789 16.3984 11.1808 15.8297Z" fill="#33363F"/>
                 </svg>
 
-              </div>
+              </button>
 
             </div>
 
@@ -125,14 +135,14 @@ export default function Header() {
             Admin
           </NavLink>
         <div className="flex gap-2">
-        <NavLink to="/login">
+        <button onClick={()=>{setTryLogin(true)}} className="flex">
         <div>{phone?phone:"Account"}</div> 
-        </NavLink>
-          <a className={(path==="/login"?'text-emerald-500':"") + ""}>
+
+      
           <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
               <path d="M11.1808 15.8297L6.54199 9.20285C5.89247 8.27496 6.55629 7 7.68892 7L16.3111 7C17.4437 7 18.1075 8.27496 17.458 9.20285L12.8192 15.8297C12.4211 16.3984 11.5789 16.3984 11.1808 15.8297Z" fill="#33363F"/>
               </svg>
-          </a>
+              </button>
         </div>
 
         </div>
@@ -158,7 +168,7 @@ export default function Header() {
         
     </div>
     {address?
-    <div className='address-dropdown w-1/3 z-2 mx-20 p-4 flex-column  bg-[#F3F6FB]'>
+    <div ref={dropdownRef} className='address-dropdown w-1/3 z-2 mx-20 p-4 flex-column  bg-[#F3F6FB]' role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
       <div className='p-3'>
     <div className='flex justify-between items-center'>
     <button onClick={()=>{}} className={`my-2 py-2 px-4 rounded-xl border border-[#328616] bg-[#F6FFF8] text-[#328616]`}>
@@ -171,11 +181,6 @@ export default function Header() {
 </svg>
     </div>
     </div>
-    {/* <div className='flex justify-between'> */}
-        {/* <div>Detect My Location</div>
-        <div>Or</div>
-        <div>search Delivery location</div> */}
-    {/* </div> */}
     <div>Your saved addresses</div>
     </div>
 
@@ -218,6 +223,8 @@ export default function Header() {
 
 </div>
     :<></>}
+
+    {tryLogin?<Login dropdownRef={dropdownRef} />:<></>}
     </div>
   )
 }
