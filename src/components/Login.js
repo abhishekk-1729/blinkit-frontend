@@ -4,83 +4,105 @@ import { Link, useNavigate, Navigate } from "react-router-dom";
 import otpVerification from './OtpVerify';
 
 
-export default function Login({dropdownRef}) {
+export default function Login({dropdownRef,setTryLogin,tryLogin}) {
 
-    const [phone,setPhone] = useState();
-
+    const [phoneTemp,setPhoneTemp] = useState();
+    const [resend,setResend] = useState(false);
+    const [otp,setOtp] = useState();//what needs to be entered and checked
+    const [OTP,setOTP] = useState();
+    const [token,setToken] = useState();
+    const {storeTokenInLS,setPhone} = useAuth();
     const [isComplete, setIsComplete] = useState(false);
     const [phoneSet,setPhoneSet] = useState(false);
+
+
     const handleInput = (e) => {
         const input = e.target.value;
         if (/^\d*$/.test(input) && input.length <= 10) {
-          setPhone(input);
+          setPhoneTemp(input);
           setIsComplete(input.length === 10);
         }
       };
 
-  
     const navigate = useNavigate();
+
     const handleSubmit = async(event) => {
+    const new_body = {phone:phoneTemp}
+    console.log(new_body);
+    event.preventDefault();
+    const response = await fetch("http://localhost:8000/api/auth/loginPhone",{
+        method:"POST",
+        headers:{
+            'Content-Type':"application/json"
+        },
+        body: JSON.stringify(new_body)
+        
+        //send otp
 
-        const new_body = {phone:phone}
-        event.preventDefault();
-        const response = await fetch("http://localhost:8000/api/auth/loginPhone",{
-            method:"POST",
-            headers:{
-                'Content-Type':"application/json"
-            },
-            body: JSON.stringify(new_body)//send otp
-
-        })
+    })
 
         const res_result = await response.json();
+        // console.log(res_result);
 
         if(response.ok){
-            // storeTokenInLS(res_result.token);
-            setPhone(phone);
-            console.log(res_result.otp);
-            console.log(res_result.token);
+            // setPhoneTemp(phoneTemp);
+            setOTP(res_result.otp);
+            // console.log(OTP)
+            setToken(res_result.token);
         }
         else{
-            console.log(res_result.otp);
+            console.log("dikkat h");
         }
-
+        console.log(res_result.otp)
         setPhoneSet(true);
+    }
 
-        // navigate("/otp", { state: { OTP: res_result.otp ,token:res_result.token,phone:phone} });
-       
+    const handleOtpVerify = (e) => {
+
+        e.preventDefault();
+        if(otp===OTP){
+            console.log("same");
+            console.log(OTP);
+            console.log(token);
+            console.log(phoneTemp);
+            storeTokenInLS(token);
+            setPhone(phoneTemp);
+            navigate("/");
+            setTryLogin(false);
+            setPhoneSet(false);
+        }
+        else{
+            console.log(OTP);
+            console.log(otp);
+            console.log("different")
+        }
+        
+    }
+
+    const handleInput2 = (e) => {
+        setOtp(e.target.value);
     }
 
   return (
     <div>
-
-
-
-
-
-
-
-
   <div  class="fixed inset-0 bg-gray-500 bg-opacity-50 transition-opacity">
-
-
-
   <div  class="fixed inset-0 z-10 w-screen overflow-y-auto">
     <div class="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
         
         {/* hi */}
         
-        {!phoneSet?<>
+     
 
     <div ref={dropdownRef} class="relative transform overflow-hidden rounded-xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+ 
 
-
-            <div className='absolute mt-4 ml-4'>
+            <button onClick={()=>{setTryLogin(phoneSet?true:false); setPhoneSet(!phoneSet)}} className='absolute mt-4 ml-4'>
                     <img src="/svg/left-arrow.svg" alt=""height = "30px" width = "30px" />
-                    </div>
-                 
+                    </button>
+
 
   <div class="bg-white sm:p-6 sm:pb-4">
+  {(tryLogin&&!phoneSet)?<>
 
                 <div class="sm:flex flex-col sm:items-center gap-1 justify-center items-center">
                             <div className='w-full flex justify-center items-center p-2'>
@@ -107,12 +129,12 @@ export default function Login({dropdownRef}) {
                           +91
                          </div>
                           <input type="phone"
-                          name = "phone"
+                          name = "phoneTemp"
                           placeholder="Enter Phone Number"
-                          id="phone"
+                          id="phoneTemp"
                           required
-                          autoComplete="off"
-                          value={phone}
+                          autoComplete="on"
+                          value={phoneTemp}
                           onChange={handleInput}
                           className='bg-gray-100 w-full border-none outline-none rounded-xl p-4'
                            />
@@ -129,12 +151,44 @@ export default function Login({dropdownRef}) {
   </div>
             <div>
             By continuing, you agree to our Terms of service & Privacy policy
-            </div>
+           </div>
+         
+ 
+           </>:
+           
+  <>
+<div className='flex flex-col justify-center items-center gap-3'>
 
+    <div>OTP Verification</div>
+    <div>We have sent a verification code to  </div>
+    <div>+91-{phoneTemp} </div>
+    <div>    <form onSubmit={handleOtpVerify} className='flex flex-col'>
+                    
+                          <input type="text"
+                          name = "otp"
+                          placeholder="Enter otp"
+                          id="otp"
+                          required
+                          autoComplete="off"
+                          value={otp}
+                          onChange={handleInput2}
+                          className='bg-gray-100 w-full border-none outline-none rounded-xl p-4'
+                           />
+                     <button type="submit"  className={`mt-2 inline-flex w-full justify-center rounded-xl p-4 text-sm font-semibold text-white shadow-sm sm:w-full ${isComplete ? 'bg-[#0D831E] hover:bg-[#0D831E]' : 'bg-[#9C9C9C] hover:bg-[#9C9C9C]'}`}>
+  Verify</button>
+  </form>
+    </div>
+
+</div>
+
+
+
+  </>
+  }
   </div>
   </div>
-  </>:<>hi</>
-}
+  
+
 
 
 

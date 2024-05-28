@@ -224,7 +224,7 @@ export default function Header() {
 </div>
     :<></>}
 
-    {tryLogin?<Login dropdownRef={dropdownRef} />:<></>}
+    {tryLogin?<Login dropdownRef={dropdownRef} setTryLogin={setTryLogin} tryLogin={tryLogin} />:<></>}
     </div>
   )
 }
