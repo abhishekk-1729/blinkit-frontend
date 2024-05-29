@@ -1,8 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useAuth } from '../store/auth';
 
 export default function Orders() {
+
+ const [orders,setOrders] = useState([]);
+ const {phone} = useAuth();
+
+ const fetchOrders = async ()=> {
+    try {
+        const response = await fetch(`http://localhost:8000/api/order/getAllOrdersPhone/${phone}`,{
+            method:"GET"
+        });
+
+        const res_data = await response.json();
+        console.log(res_data);
+        if(response.ok){
+            setOrders(res_data);
+            
+        }
+        
+    } catch (error) {
+        console.log("nahi aaya");
+    }
+ }
+
+  useEffect(()=>{
+    fetchOrders();
+ },[phone])
+
   return (
     <div className='w-3/4 p-8 flex flex-col'>
+{
+
+
+orders.map((cur)=>{
+
+    const {order_Id,orderStatus,orderTotal,timeOfOrder} = cur;
+return(
+
 
             <div className='flex justify-between items-center py-4 border-b-2 border-black-5'>
                 <div className='flex gap-4 justify-center items-center'>
@@ -10,11 +45,11 @@ export default function Orders() {
                         <img src="/utils/order.png" alt="" />
                     </div>
                     <div className='flex flex-col gap-1'>
-                        <div>ORD249152028  ·  ₹226</div>
-                        <div>Placed on fri, 19 apr'24, 10:12 am</div>
+                        <div>{order_Id}  ₹{orderTotal}</div>
+                        <div>Placed on {timeOfOrder}</div>
                     </div>
                     <div className='bg-[#999999] text-[#FFFFFF] p-1 rounded-xl'>
-                        delivered
+                        {orderStatus}
                     </div>
 
                 </div>
@@ -24,12 +59,10 @@ export default function Orders() {
                     </button>
                 </div>
 
-            </div>
-
-
             
-
-           
-    </div>
+    </div>)
+    })
+}
+</div>
   )
 }

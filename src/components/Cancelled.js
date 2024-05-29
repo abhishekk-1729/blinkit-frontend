@@ -3,7 +3,17 @@ import React from 'react'
 export default function Cancelled() {
   return (
     <div>
-      Cancelled
+      hi
+      hi
+      hi
+      hi
+      hi
+      hi
+      hi
+      hi
+      hi
+      hi
+      hi
     </div>
   )
 }

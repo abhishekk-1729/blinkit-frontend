@@ -114,9 +114,9 @@ export default function Header() {
    
 
         <div className='flex justify-center items-center py-2 px-16'>
-          <NavLink className='px-2' to="/admin">
+          {/* <NavLink className='px-2' to="/admin">
             Admin
-          </NavLink>
+          </NavLink> */}
         <div className="flex gap-2">
         <button onClick={()=>{setTryLogin(!tryLogin)}} className="flex">
         <div>{phone?"Account":"Login"}</div> 

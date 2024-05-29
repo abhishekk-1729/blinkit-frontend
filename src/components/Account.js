@@ -10,7 +10,7 @@ export default function Account() {
 
   return (
 
-            <div className='flex m-20 min-h-32  gap-2 border-2 border-black-5 '>
+            <div className='flex m-20 h-[36rem] gap-2 border-2 border-black-5  '>
        
                     <div className='w-1/4 flex flex-col min-h-32 border-r-2 border-black-5  '>
                         <div className='p-4 flex justify-center border-b-2 border-black-5'>{phone}</div>
@@ -26,7 +26,7 @@ export default function Account() {
                         <button className=' text-left p-4' onClick={()=>{LogoutUser(); navigate("/");}}>Logout</button>
                     </div>
            
-            <Outlet/>
+                <Outlet/>
             </div>
 
   )

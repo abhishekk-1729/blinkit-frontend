@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 
-
 import { BrowserRouter,Routes, Route } from 'react-router-dom' 
 import Checkout from './components/Checkout';
 import Footer from './components/Footer';
@@ -19,8 +18,12 @@ import Privacy from './components/Privacy'
 import Wallet from './components/Wallet'
 import Addresses from './components/Addresses'
 import Orders from './components/Orders'
+import Success from './components/Success';
+import Cancelled from './components/Cancelled';
+
 
 function App() {
+
 
 
 
@@ -34,6 +37,11 @@ function App() {
         <Route path = ":id" element={<CategoryProduct/>}/>
         </Route>
         <Route path = "/checkout" element={<Checkout/>}/>
+        <Route path = "/success" element={<Success/>}>
+        <Route path = ":id" element={<Success/>}/>
+        </Route>
+        <Route path = "/cancel" element={<Cancelled/>}/>
+
         <Route path = "/otp" element={<OtpVerify/>}/>
         <Route path = "/account" element={<Account/>}>
         <Route path = "addresses" element={<Addresses/>}/>
@@ -50,8 +58,7 @@ function App() {
         <Route path = "addSubCategory" element={<AddSubCategory/>}/>
         </Route>
       </Routes>
-      <Foot/> 
-  
+      <Foot/>      
     </BrowserRouter>
     </>
   );

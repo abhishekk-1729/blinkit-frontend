@@ -15,19 +15,19 @@ export default function DropDown({setTryLogin}) {
                 </div>
                 <div className='flex flex-col gap-2'>
                     <Link to="/account/orders">
-                    <button className="text-left hover:bg-[#F8F8F8] px-6" >My Orders</button></Link>
+                    <button  onClick={()=>{ setTryLogin(false);}} className="text-left hover:bg-[#F8F8F8] px-6" >My Orders</button></Link>
                     <Link to="/account/addresses">
-                    <button className="text-left hover:bg-[#F8F8F8] px-6" >Saved Addresses</button></Link>
+                    <button  onClick={()=>{ setTryLogin(false);}} className="text-left hover:bg-[#F8F8F8] px-6" >Saved Addresses</button></Link>
                     <Link to="/account/wallet">
-                    <button className='flex justify-between hover:bg-[#F8F8F8] px-6'>
+                    <button  onClick={()=>{ setTryLogin(false);}} className='flex justify-between hover:bg-[#F8F8F8] px-6'>
                         <>My Wallet</>
                         <div>$0</div>
                     </button>
                     </Link>
                     <Link to="/account/faqs">
-                    <button className="text-left hover:bg-[#F8F8F8] px-6" >FAQ's</button></Link>
+                    <button   onClick={()=>{ setTryLogin(false);}} className="text-left hover:bg-[#F8F8F8] px-6" >FAQ's</button></Link>
                     <Link to="account/privacy">
-                    <button className="text-left hover:bg-[#F8F8F8] px-6" >Account Privacy</button></Link>
+                    <button  onClick={()=>{setTryLogin(false);}} className="text-left hover:bg-[#F8F8F8] px-6" >Account Privacy</button></Link>
                     <Link>
                     <button className="text-left hover:bg-[#F8F8F8] px-6"  onClick={()=>{LogoutUser(); setTryLogin(false);}}>Log Out</button>
                     </Link>               

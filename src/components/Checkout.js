@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Layout from './Layout'
 import { useAuth } from '../store/auth'
+import { Outlet } from 'react-router-dom';
 
 
 export default function Checkout() {
 
-  const {selectedProducts,setSelectedProducts} = useAuth();
+  const {selectedProducts,setSelectedProducts,currentAddress,phone} = useAuth();
   const [productInfos,setProducstInfos] = useState([]);
   const [address,setAddress] = useState('');
   const [city,setCity] = useState('');
@@ -17,10 +18,11 @@ export default function Checkout() {
         // console.log(selectedProducts);
         const uniqueIds = [... new Set(selectedProducts)];
         const id = uniqueIds.join(",");
-        console.log(id);
+        console.log("id",id);
         const response = await fetch(`http://localhost:8000/api/products/getAllProductsById/${id}`,{method:"GET"});
         if(response.ok){
             const res_data = await response.json();
+            console.log("hi",res_data);
             setProducstInfos(res_data);}
         }
     catch (error) {
@@ -55,9 +57,9 @@ export default function Checkout() {
   }
   const total = subtotal + deliveryPrice;
   
-  
+  const d = new Date();
   const handleSubmit = async(data) => {
-
+    console.log("data89",data);
     
     try {
         const response = await fetch("http://localhost:8000/api/checkout/final",{
@@ -65,12 +67,20 @@ export default function Checkout() {
             headers:{
                 "Content-Type":"application/json"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({products:data,time:d,phone:phone,address:currentAddress})
         })
 
+        // if (response.status === 303) {
+        //   // Redirect to the URL
+          
+        //   window.location.href = response.data.url;
+        // }
+
         if(response.ok){
-        const res_data = await response.json;
-        console.log(res_data);
+        const res_data = await response.json();
+        window.location.href = res_data.url;
+        console.log(res_data.url);
+        
     }
 
     } catch (error) {
@@ -90,7 +100,7 @@ export default function Checkout() {
         return (
         <div className="flex mb-5 items-center" key={productInfo._id}>
           <div className="bg-gray-100 p-3 rounded-xl shrink-0" style={{boxShadow:'inset 1px 0px 10px 10px rgba(0,0,0,0.1)'}}>
-            <img className="w-24" src={productInfo.picture} alt=""/>
+            <img className="w-24" src={`/production/${productInfo.productImage}`} alt=""/>
           </div>
           <div className="pl-4 items-center">
             <h3 className="font-bold text-lg">{productInfo.name}</h3>
@@ -110,13 +120,8 @@ export default function Checkout() {
       )})}
 
       
-       {productInfos.length!=0&&<form onSubmit={handleSubmit(selectedProducts.join(','))}>
-        <div className="mt-8">
-          <input name="address" value={address} onChange={e => setAddress(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Street address, number"/>
-          <input name="city" value={city} onChange={e => setCity(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="City and postal code"/>
-          <input name="name" value={name} onChange={e => setName(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="text" placeholder="Your name"/>
-          <input name="email" value={email} onChange={e => setEmail(e.target.value)} className="bg-gray-100 w-full rounded-lg px-4 py-2 mb-2" type="email" placeholder="Email address"/>
-        </div>
+       {productInfos.length!=0&&<form onSubmit={(e)=>{e.preventDefault(); handleSubmit(selectedProducts.join(','))}}>
+        
         <div className="mt-8">
           <div className="flex my-3">
             <h3 className="grow font-bold text-gray-400">Subtotal:</h3>
@@ -135,6 +140,7 @@ export default function Checkout() {
         <button type="submit" className="bg-emerald-500 px-5 py-2 rounded-xl font-bold text-white w-full my-4 shadow-emerald-300 shadow-lg">Pay ${total}</button>
       </form>
       }
+      
     </Layout>
   )
 }

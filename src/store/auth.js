@@ -9,6 +9,7 @@ export const AuthProvider = ({children}) => {
     const [token,setToken] = useState(localStorage.getItem("token"));
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [user,setUser] = useState("");
+    const [currentAddress,setCurrentAddress] = useState("ABC");
     const storeTokenInLS = (serverToken) => {
       setToken(serverToken);
       return localStorage.setItem("token",serverToken);
@@ -637,10 +638,10 @@ export const AuthProvider = ({children}) => {
 
     useEffect(()=>{
         fetchAddress();
-    },[])
+    },[phone])
 
 
-    return <AuthContext.Provider value={{token,isLoggedIn,LogoutUser,storeTokenInLS, selectedProducts,setSelectedProducts,productInfo,setProductInfo,addresses,setAddresses,phone,setPhone,categoryInfo}}>
+    return <AuthContext.Provider value={{currentAddress,setCurrentAddress,token,isLoggedIn,LogoutUser,storeTokenInLS, selectedProducts,setSelectedProducts,productInfo,setProductInfo,addresses,setAddresses,phone,setPhone,categoryInfo}}>
         {children}
     </AuthContext.Provider>
 }

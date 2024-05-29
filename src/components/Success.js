@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +8,32 @@ export default function Success() {
 
   const params = useParams();
   const navigate = useNavigate();
-  const [downloadState, setDownloadState] = useState("Invoice");
+  const [downloadState, setDownloadState] = useState("Download Invoice");
+
+  const [t, setT] = useState(300); // 10 minutes in seconds
+  const [timeText, setTimeText] = useState('');
+
+  useEffect(() => {
+      if (t > 0) {
+          const timer = setInterval(() => {
+              setT(prevT => prevT - 1);
+          }, 1000);
+
+          return () => clearInterval(timer); // Clear interval on component unmount
+      } else {
+          setTimeText('Order coming in 0 seconds');
+        
+
+      }
+  }, [t]);
+
+  useEffect(() => {
+      if (t > 0) {
+          const minutes = Math.floor(t / 60);
+          const seconds = t % 60;
+          setTimeText(`Order coming in ${minutes} minutes and ${seconds} seconds`);
+      }
+  }, [t]);
 
   const downloadInvoice = () => {
     setDownloadState("Downloading...");
@@ -28,7 +53,7 @@ export default function Success() {
             link.click();
             setDownloadState("Downloaded Successfully!");
             setTimeout(() => {
-                setDownloadState("Downloaded");
+                setDownloadState("Invoice Downloaded");
             }, 5000);
         })
         .catch((err) => {
@@ -39,9 +64,44 @@ export default function Success() {
 };
 
 
+
+const changeStatus = async(data)=>{
+
+ 
+  try {
+
+    const response = await fetch(`http://localhost:8000/api/order/edit/${params.id}`,{
+        method:"PUT",
+        headers:{
+          'Content-Type':"application/json"
+      },
+      body: JSON.stringify({status:data})
+
+    });
+
+    const res_data = await response.json();
+    
+    if (response.ok){
+        console.log("yay");
+    }
+  }
+     
+    catch (error) {
+    console.log("ni hua");
+  }
+}
+useState(()=>{
+
+  changeStatus("PLACED");
+},[])
+
+
   return (
-    <div>
-      {params.id}
+    <div className='flex flex-col justify-center items-center h-screen gap-20'>
+      <di className='text-[#328515] text-6xl'>
+      {timeText}
+      </di>
+      {/* {params.id} */}
       <div>
       <button className="bg-emerald-400 text-white py-1 px-3 rounded-xl" onClick={downloadInvoice}>{downloadState}</button>
       </div>
