@@ -8,7 +8,7 @@ export default function Orders() {
 
  const fetchOrders = async ()=> {
     try {
-        const response = await fetch(`https://abhishek.nssiitd.in/api/order/getAllOrdersPhone/${phone}`,{
+        const response = await fetch(`https://abhishek.nssiitd.in/ecommerce//api/order/getAllOrdersPhone/${phone}`,{
             method:"GET"
         });
 

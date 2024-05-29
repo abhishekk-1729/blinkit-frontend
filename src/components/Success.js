@@ -38,7 +38,7 @@ export default function Success() {
   const downloadInvoice = () => {
     setDownloadState("Downloading...");
     axios
-        .get(`https://abhishek.nssiitd.in/download/${params.id}`, { responseType: "blob" })
+        .get(`https://abhishek.nssiitd.in/ecommerce//download/${params.id}`, { responseType: "blob" })
         .then((res) => {
             console.log(res);
             const url = window.URL.createObjectURL(
@@ -70,7 +70,7 @@ const changeStatus = async(data)=>{
  
   try {
 
-    const response = await fetch(`https://abhishek.nssiitd.in/api/order/edit/${params.id}`,{
+    const response = await fetch(`https://abhishek.nssiitd.in/ecommerce//api/order/edit/${params.id}`,{
         method:"PUT",
         headers:{
           'Content-Type':"application/json"
