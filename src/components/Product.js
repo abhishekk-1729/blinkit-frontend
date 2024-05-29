@@ -8,7 +8,7 @@ export default function Product() {
     const id=params.id;
 
     const getProductInfo = async() => {
-        const response = await fetch(`http://localhost:8000/api/products/getAllProductsById/${id}`,{
+        const response = await fetch(`https://abhishek.nssiitd.in/api/products/getAllProductsById/${id}`,{
             method:"GET",
             headers:{
                 'Content-Type':"application/json"

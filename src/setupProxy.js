@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/api', // 👈🏽 your API endpoint goes here.
     createProxyMiddleware({
-      target: 'http://localhost:8000', // 👈🏽 your API URL goes here.
+      target: 'https://abhishek.nssiitd.in', // 👈🏽 your API URL goes here.
       changeOrigin: true,
     })
   );

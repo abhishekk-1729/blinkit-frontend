@@ -11,7 +11,7 @@
 //     const fetchAddress = async() => {
 //         try {
 //             console.log(phone);
-//             const response = await fetch(`http://localhost:8000/api/address/getAddressPhone/${phone}`,{
+//             const response = await fetch(`https://abhishek.nssiitd.in/api/address/getAddressPhone/${phone}`,{
 //                 method:"GET",
 
                 
@@ -37,7 +37,7 @@
 
 //         console.log(id);
 //         try {
-//             const response = await fetch(`http://localhost:8000/api/address/deleteAddress`,{
+//             const response = await fetch(`https://abhishek.nssiitd.in/api/address/deleteAddress`,{
 //                 method: "DELETE",
 //                 headers:{'Content-Type':'application/json'},
 //                 body: JSON.stringify({_id:id})

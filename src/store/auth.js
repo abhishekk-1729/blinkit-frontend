@@ -543,7 +543,7 @@ export const AuthProvider = ({children}) => {
     const userAuthentication= async()=>{
         if(token){
             try {
-                const response = await fetch('http://localhost:8000/api/auth/user',{
+                const response = await fetch('https://abhishek.nssiitd.in/api/auth/user',{
                     method:"GET",
                     headers:{
                         Authorization:`Bearer ${token}`
@@ -575,7 +575,7 @@ export const AuthProvider = ({children}) => {
 
     const getAllProducts = async()=> {
         try {
-            const response = await fetch("http://localhost:8000/api/products/getAllProducts",{ 
+            const response = await fetch("https://abhishek.nssiitd.in/api/products/getAllProducts",{ 
             method:"GET"
           });
     
@@ -598,7 +598,7 @@ export const AuthProvider = ({children}) => {
 
     const getAllCategory = async()=> {
         try {
-            const response = await fetch("http://localhost:8000/api/products/getAllCategory",{ 
+            const response = await fetch("https://abhishek.nssiitd.in/api/products/getAllCategory",{ 
             method:"GET"
           });
     
@@ -619,7 +619,7 @@ export const AuthProvider = ({children}) => {
     const fetchAddress = async() => {
         try {
             console.log(phone);
-            const response = await fetch(`http://localhost:8000/api/address/getAddressPhone/${phone}`,{
+            const response = await fetch(`https://abhishek.nssiitd.in/api/address/getAddressPhone/${phone}`,{
                 method:"GET",
             });
 
