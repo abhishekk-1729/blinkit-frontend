@@ -20,7 +20,7 @@ export default function Addresses() {
         const data = {phone:phone,address:addressAddress,phoneNumber:phoneAddress,name:nameAddress};
             try {
   
-              const response = await fetch(`https://abhishek.nssiitd.in/ecommerce//api/address/addAddressPhone`,{
+              const response = await fetch(`https://abhishek.nssiitd.in/ecommerce/api/address/addAddressPhone`,{
                   method:"POST",
                   headers:{
                     'Content-Type':"application/json"
@@ -61,7 +61,7 @@ export default function Addresses() {
 
         console.log(id);
         try {
-            const response = await fetch(`https://abhishek.nssiitd.in/ecommerce//api/address/deleteAddress`,{
+            const response = await fetch(`https://abhishek.nssiitd.in/ecommerce/api/address/deleteAddress`,{
                 method: "DELETE",
                 headers:{'Content-Type':'application/json'},
                 body: JSON.stringify({_id:id})

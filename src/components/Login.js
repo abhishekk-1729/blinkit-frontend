@@ -30,7 +30,7 @@ export default function Login({dropdownRef,setTryLogin,tryLogin}) {
     const new_body = {phone:phoneTemp}
     console.log(new_body);
     event.preventDefault();
-    const response = await fetch("https://abhishek.nssiitd.in/ecommerce//api/auth/loginPhone",{
+    const response = await fetch("https://abhishek.nssiitd.in/ecommerce/api/auth/loginPhone",{
         method:"POST",
         headers:{
             'Content-Type':"application/json"
