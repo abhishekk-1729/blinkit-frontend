@@ -80,7 +80,15 @@ export default function Login({dropdownRef,setTryLogin,tryLogin}) {
     }
 
     const handleInput2 = (e) => {
-        setOtp(e.target.value);
+        const enteredOtp = e.target.value;
+        setOtp(enteredOtp);
+        if(enteredOtp===OTP){
+            storeTokenInLS(token);
+            setPhone(phoneTemp);
+            navigate("/");
+            setTryLogin(false);
+            setPhoneSet(false);
+        }
     }
 
   return (
