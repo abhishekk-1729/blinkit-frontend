@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../store/auth';
+import { Link } from 'react-router-dom';
 
 export default function Orders() {
 
@@ -35,7 +36,7 @@ export default function Orders() {
 
 orders.map((cur)=>{
 
-    const {order_Id,orderStatus,orderTotal,timeOfOrder} = cur;
+    const {orderId,orderStatus,orderTotal,timeOfOrder} = cur;
 return(
 
 
@@ -45,7 +46,7 @@ return(
                         <img src="/utils/order.png" alt="" />
                     </div>
                     <div className='flex flex-col gap-1'>
-                        <div>{order_Id}  ₹{orderTotal}</div>
+                        <div>{orderId}  ₹{orderTotal}</div>
                         <div>Placed on {timeOfOrder}</div>
                     </div>
                     <div className='bg-[#999999] text-[#FFFFFF] p-1 rounded-xl'>
@@ -54,9 +55,11 @@ return(
 
                 </div>
                 <div>
+                    <Link to={`/success/${orderId}`}>
                     <button className='border-2 border-black-5 text-[#0D831E] rounded-md p-1'>
-                        View Details
+                        View Details 
                     </button>
+                    </Link>
                 </div>
 
             

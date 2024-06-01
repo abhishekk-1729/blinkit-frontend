@@ -66,15 +66,15 @@ export default function Header() {
             {/* <Link to ="/address"> */}
             <div className="flex-column">
             <div className="address">
-              Delivery in {8} minutes
+              Delivery in {10} minutes
             </div>
-            <div className="pb-2">
+            <div className="">
             </div>
             <div className="flex justify-between">
               
               <div>
-                Home - 
-              {' Girnar '}
+                Home - {addresses.length>0?addresses[0].address:""}
+              
               </div>
 
               <button type="button" className="justify-self-end" id="menu-button" aria-expanded="true" aria-haspopup="true">

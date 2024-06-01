@@ -158,7 +158,8 @@ export default function Login({dropdownRef,setTryLogin,tryLogin}) {
     
   </div>
             <div>
-            By continuing, you agree to our Terms of service & Privacy policy
+            By continuing, you agree to our Terms of service & Privacy policy.<br/>
+            Note: OTP can be found in console in test mode
            </div>
          
  
