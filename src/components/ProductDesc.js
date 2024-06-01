@@ -2,17 +2,18 @@ import React, { useState } from 'react'
 import { useAuth } from '../store/auth'
 
 
-export default function ProductDesc({_id,name,price,picture,description}) {
+export default function ProductDesc({_id,name,price,picture,description,addToWhat,setAddToWhat}) {
     
     const {selectedProducts,setSelectedProducts} = useAuth();
 
+    // const [addToWhat, setAddToWhat] = useState();
 
     const handleAddItem = () =>{
-        setSelectedProducts(prev=>[...prev,_id]);
+        setAddToWhat(prev=>[...prev,_id]);
     }
 
     const handleDeleteItem = () => {
-      setSelectedProducts(prev => {
+      setAddToWhat(prev => {
           const index = prev.indexOf(_id);
           if (index > -1) {
               return [...prev.slice(0, index), ...prev.slice(index + 1)];
@@ -47,7 +48,7 @@ export default function ProductDesc({_id,name,price,picture,description}) {
       </div>
        </div>
        <div className='flex flex-col h-full'>
-        <div className='flex-1 min-h-[3rem]  max-h-[3rem]'>{truncateName(name,35)}
+        <div className='flex-1 min-h-[3rem]  max-h-[3rem]'>{truncateName(name,25)}
           </div>
            <div className="flex-1 my-2  w-full min-h-[2rem]  max-h-[3rem]"> 
 {description}
@@ -59,11 +60,11 @@ export default function ProductDesc({_id,name,price,picture,description}) {
                <div>$ {price}</div>
                <div>{
 
-                selectedProducts.find(p=>p===_id)?
+                addToWhat.find(p=>p===_id)?
                 <div className="flex gap-2 py-2 px-4 rounded-xl justify-center items-center border border-[#328616] bg-[#328616] text-[#FFFFFF]">
                  
                   <button onClick={handleDeleteItem}>-</button>
-                  <div>{selectedProducts.filter(p=>p===_id).length}</div>
+                  <div>{addToWhat.filter(p=>p===_id).length}</div>
                   <button onClick={handleAddItem}>+</button>
                   </div>:
                <button onClick={handleAddItem} className="py-2 px-4 rounded-xl border border-[#328616] bg-[#F6FFF8] text-[#328616]">

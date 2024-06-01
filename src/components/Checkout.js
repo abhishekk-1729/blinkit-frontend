@@ -8,10 +8,6 @@ export default function Checkout() {
 
   const {selectedProducts,setSelectedProducts,currentAddress,phone} = useAuth();
   const [productInfos,setProducstInfos] = useState([]);
-  const [address,setAddress] = useState('');
-  const [city,setCity] = useState('');
-  const [name,setName] = useState('');
-  const [email,setEmail] = useState('');
   
   const fetchSelectedProducts = async () => {
     try {

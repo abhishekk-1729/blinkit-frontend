@@ -7,12 +7,14 @@ import "../App.css"
 import Login from './Login';
 import UserDropdown from './DropDown';
 import AddressDropDown from './AddressDropDown';
+import SearchAI from "./SearchAI";
 
 
 
 export default function Header() {
 
     const {phone,addresses} = useAuth();
+    const [aiSearch,setAiSearch] = useState(false);
     const {input,setInput,token} = useAuth();
     const [placeholderText, setPlaceholderText] = useState(""); 
     const placeholderList = ['Search "rice"', 'Search "egg"', 'Search "butter"', 'Search "paneer"','Search "milk"','Search "bread"','Search "curd"','Search "sugar"','Search "chips"','Search "chocholate"']; 
@@ -110,6 +112,13 @@ export default function Header() {
         </Link>
         </div>
 
+
+        <div className='flex justify-center items-center'>
+          <Link to="/searchAI">
+          <img src="/utils/ai.png" alt="" height="40px" width="40px"/>
+          </Link>
+        </div>
+
         
    
 
@@ -162,6 +171,8 @@ export default function Header() {
       tryLogin?<UserDropdown setTryLogin={setTryLogin}/>:<></>
     }
     </>}
+
+    {aiSearch?<SearchAI/>:<></>}
    
 
     </div>

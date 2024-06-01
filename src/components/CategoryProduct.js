@@ -13,7 +13,7 @@ export default function CategoryProduct() {
     const {productInfo,setProductInfo} = useAuth();
     const [subCat, setSubCat] = useState([...new Set(productInfo.filter(p => p.category === params.id).map(p => p.subCategory))][0]);
 
-
+    const {selectedProducts,setSelectedProducts} = useAuth();
 
 
   return (
@@ -68,7 +68,9 @@ export default function CategoryProduct() {
       {productInfo.filter(p => p.subCategory === subCat).map(product => (
                  
                    
-      <ProductDesc _id={product._id} name={product.productName} price = {product.price} description={product.quantity} picture={product.productImage}/>
+      <ProductDesc _id={product._id} name={product.productName} price = {product.price} description={product.quantity} picture={product.productImage}
+      addToWhat={selectedProducts} setAddToWhat={setSelectedProducts}
+      />
       ))}
 
       </div>

@@ -20,6 +20,7 @@ import Addresses from './components/Addresses'
 import Orders from './components/Orders'
 import Success from './components/Success';
 import Cancelled from './components/Cancelled';
+import SearchAI from './components/SearchAI';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path = ":id" element={<CategoryProduct/>}/>
         </Route>
         <Route path = "/checkout" element={<Checkout/>}/>
+        <Route path = "/searchAI" element={<SearchAI/>}/>
         <Route path = "/success" element={<Success/>}>
         <Route path = ":id" element={<Success/>}/>
         </Route>
