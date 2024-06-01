@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
 
 
+    const [input,setInput] = useState();
     const [token,setToken] = useState(localStorage.getItem("token"));
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [user,setUser] = useState("");
@@ -641,7 +642,7 @@ export const AuthProvider = ({children}) => {
     },[phone])
 
 
-    return <AuthContext.Provider value={{currentAddress,setCurrentAddress,token,isLoggedIn,LogoutUser,storeTokenInLS, selectedProducts,setSelectedProducts,productInfo,setProductInfo,addresses,setAddresses,phone,setPhone,categoryInfo}}>
+    return <AuthContext.Provider value={{input,setInput,currentAddress,setCurrentAddress,token,isLoggedIn,LogoutUser,storeTokenInLS, selectedProducts,setSelectedProducts,productInfo,setProductInfo,addresses,setAddresses,phone,setPhone,categoryInfo}}>
         {children}
     </AuthContext.Provider>
 }

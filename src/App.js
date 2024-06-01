@@ -21,6 +21,7 @@ import Orders from './components/Orders'
 import Success from './components/Success';
 import Cancelled from './components/Cancelled';
 import SearchAI from './components/SearchAI';
+import Search from './components/Search';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path = "/cancel" element={<Cancelled/>}/>
 
         <Route path = "/otp" element={<OtpVerify/>}/>
+        <Route path = "/search" element={<Search/>}/>
         <Route path = "/account" element={<Account/>}>
         <Route path = "addresses" element={<Addresses/>}/>
         <Route path = "orders" element={<Orders/>}/>
