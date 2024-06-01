@@ -19,7 +19,7 @@ export default function SearchAI() {
     setLoading(true); // Start loading
     try {
       const response = await fetch(
-        `http://localhost:8000/api/product/getAllProductsByQuery/${data}`,
+        `https://abhishek.nssiitd.in/ecommerce/api/product/getAllProductsByQuery/${data}`,
         {
           method: "GET",
         }
