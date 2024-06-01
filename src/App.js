@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 
+
 import { BrowserRouter,Routes, Route } from 'react-router-dom' 
 import Checkout from './components/Checkout';
 import Footer from './components/Footer';
@@ -22,17 +23,32 @@ import Success from './components/Success';
 import Cancelled from './components/Cancelled';
 import SearchAI from './components/SearchAI';
 import Search from './components/Search';
+import { useRef, useState } from 'react';
+import PopUp from './components/PopUp';
+import { useAuth } from './store/auth';
+
 
 
 function App() {
 
+  const dropdownRef = useRef(null);
 
+  const {isVisible, setIsVisible} = useAuth();
 
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsVisible(false);
+    }
+  };
+
+  document.addEventListener('mousedown', handleClickOutside);
 
   return (
     <>
     <BrowserRouter>
     <Header/>
+    {isVisible?
+    <PopUp dropdownRef = {dropdownRef} setIsVisible={setIsVisible} />:<></>}
       <Routes>
         <Route path = "/" element={<Home/>}/>
         <Route path = "allProduct" element={<CategoryProduct/>}>
