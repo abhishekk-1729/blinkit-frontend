@@ -33,7 +33,7 @@ function App() {
 
   const dropdownRef = useRef(null);
 
-  const {isVisible, setIsVisible} = useAuth();
+  const {isVisible, setIsVisible, token} = useAuth();
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -47,7 +47,7 @@ function App() {
     <>
     <BrowserRouter>
     <Header/>
-    {isVisible?
+    {isVisible&&!token?
     <PopUp dropdownRef = {dropdownRef} setIsVisible={setIsVisible} />:<></>}
       <Routes>
         <Route path = "/" element={<Home/>}/>
