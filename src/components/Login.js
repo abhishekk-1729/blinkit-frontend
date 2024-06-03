@@ -47,7 +47,7 @@ export default function Login({dropdownRef,setTryLogin,tryLogin}) {
         if(response.ok){
             // setPhoneTemp(phoneTemp);
             setOTP(res_result.otp);
-            // console.log(OTP)
+            console.log(OTP)
             setToken(res_result.token);
         }
         else{
