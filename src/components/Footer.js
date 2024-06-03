@@ -10,7 +10,7 @@ export default function Footer() {
     const {selectedProducts} = useAuth();
     const location = useLocation();
     const path = location.pathname;
-    console.log({path});
+    // console.log({path});
 
   return (
         <Layout>

@@ -18,10 +18,10 @@ export default function OtpVerify() {
         const token = location.state?.token; // Accessing passed state
         
         e.preventDefault();
-        console.log(OTP);
+        // console.log(OTP);
         if(otp===OTP){
-            console.log("same");
-            console.log(phone);
+            // console.log("same");
+            // console.log(phone);
             
             storeTokenInLS(token);
             setPhone(phone);
@@ -30,7 +30,7 @@ export default function OtpVerify() {
             navigate("/");
         }
         else{
-            console.log("different")
+            // console.log("different")
         }
         
     }

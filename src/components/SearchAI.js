@@ -14,7 +14,7 @@ export default function SearchAI() {
   const fetch1 = async (e) => {
     setTempCart([]);
     e.preventDefault();
-    console.log(input);
+    // console.log(input);
     const data = input.toLowerCase();
     setLoading(true); // Start loading
     try {
@@ -29,17 +29,17 @@ export default function SearchAI() {
         const res_data = await response.json();
 
         for (const p of res_data) {
-          console.log(p.productName);
-          console.log(p.quantity);
+          // console.log(p.productName);
+          // console.log(p.quantity);
           for (let i = 0; i < p.quantity; i++) {
             setTempCart((prev) => [...prev, p.productName]);
           }
         }
         setAiSearch(res_data);
-        console.log(res_data);
+        // console.log(res_data);
       }
     } catch (error) {
-      console.log("hiii");
+      // console.log("hiii");
     } finally {
       setLoading(false); // End loading
     }

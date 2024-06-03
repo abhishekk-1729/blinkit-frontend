@@ -14,11 +14,11 @@ export default function Checkout() {
         // console.log(selectedProducts);
         const uniqueIds = [... new Set(selectedProducts)];
         const id = uniqueIds.join(",");
-        console.log("id",id);
+        // console.log("id",id);
         const response = await fetch(`https://abhishek.nssiitd.in/ecommerce/api/products/getAllProductsById/${id}`,{method:"GET"});
         if(response.ok){
             const res_data = await response.json();
-            console.log("hi",res_data);
+            // console.log("hi",res_data);
             setProducstInfos(res_data);}
         }
     catch (error) {
@@ -55,7 +55,7 @@ export default function Checkout() {
   
   const d = new Date();
   const handleSubmit = async(data) => {
-    console.log("data89",data);
+    // console.log("data89",data);
     
     try {
         const response = await fetch("https://abhishek.nssiitd.in/ecommerce/api/checkout/final",{
@@ -75,7 +75,7 @@ export default function Checkout() {
         if(response.ok){
         const res_data = await response.json();
         window.location.href = res_data.url;
-        console.log(res_data.url);
+        // console.log(res_data.url);
         
     }
 

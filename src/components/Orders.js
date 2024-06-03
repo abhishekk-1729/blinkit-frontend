@@ -14,14 +14,14 @@ export default function Orders() {
         });
 
         const res_data = await response.json();
-        console.log(res_data);
+        // console.log(res_data);
         if(response.ok){
             setOrders(res_data);
             
         }
         
     } catch (error) {
-        console.log("nahi aaya");
+        // console.log("nahi aaya");
     }
  }
 

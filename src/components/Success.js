@@ -40,7 +40,7 @@ export default function Success() {
     axios
         .get(`https://abhishek.nssiitd.in/ecommerce/download/${params.id}`, { responseType: "blob" })
         .then((res) => {
-            console.log(res);
+            // console.log(res);
             const url = window.URL.createObjectURL(
                 new Blob([res.data], { type: "application/pdf" })
             );
@@ -82,12 +82,12 @@ const changeStatus = async(data)=>{
     const res_data = await response.json();
     
     if (response.ok){
-        console.log("yay");
+        // console.log("yay");
     }
   }
      
     catch (error) {
-    console.log("ni hua");
+    // console.log("ni hua");
   }
 }
 useState(()=>{

@@ -17,11 +17,11 @@ export default function Product() {
 
         const res_data = await response.json();
         if(response.ok){
-            console.log(res_data[0]);
+            // console.log(res_data[0]);
             setData(res_data[0]);
         }
         else{
-            console.log("tmkc")
+            // console.log("tmkc")
         }
 
     }

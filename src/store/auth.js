@@ -45,7 +45,7 @@ export const AuthProvider = ({children}) => {
                 
                 if(response.ok){
                     const res_data = await response.json();
-                    console.log(res_data.userData);
+                    // console.log(res_data.userData);
                     setPhone(res_data.userData);
                     // setIsLoading(false);
 
@@ -75,7 +75,7 @@ export const AuthProvider = ({children}) => {
           if(response.ok){
             const res_data = await response.json();
             setProductInfo(res_data);
-            console.log(res_data);
+            // console.log(res_data);
           }
         } catch (error) {
           console.log(error);
@@ -83,7 +83,7 @@ export const AuthProvider = ({children}) => {
       }
         
       const categoriesName = [...new Set(productInfo.map(p=>p.category))];
-      console.log({categoriesName});
+      // console.log({categoriesName});
     
       useEffect(()=>{
         getAllProducts();
@@ -98,7 +98,7 @@ export const AuthProvider = ({children}) => {
           if(response.ok){
             const res_data = await response.json();
             setCategoryInfo(res_data);
-            console.log("ca",res_data);
+            // console.log("ca",res_data);
           }
         } catch (error) {
           console.log(error);
@@ -111,13 +111,13 @@ export const AuthProvider = ({children}) => {
 
     const fetchAddress = async() => {
         try {
-            console.log(phone);
+            // console.log(phone);
             const response = await fetch(`https://abhishek.nssiitd.in/ecommerce/api/address/getAddressPhone/${phone}`,{
                 method:"GET",
             });
 
             const res_data = await response.json();
-            console.log(res_data);
+            // console.log(res_data);
             if (response.ok){
                 setAddresses(res_data);
             }

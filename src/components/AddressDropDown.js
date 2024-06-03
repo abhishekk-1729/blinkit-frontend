@@ -31,7 +31,7 @@ export default function AddressDropDown({dropdownRef,setAddress}) {
               const res_data = await response.json();
               
               if (response.ok){
-                  console.log("yay");
+                  // console.log("yay");
               }
               
               
@@ -58,7 +58,7 @@ export default function AddressDropDown({dropdownRef,setAddress}) {
 
       const handleDeleteUser = async (id) =>{
 
-        console.log(id);
+        // console.log(id);
         try {
             const response = await fetch(`https://abhishek.nssiitd.in/ecommerce/api/address/deleteAddress`,{
                 method: "DELETE",
@@ -68,10 +68,10 @@ export default function AddressDropDown({dropdownRef,setAddress}) {
   
             const res_data = await response.json();
             if(response.ok){
-                console.log(res_data);
+                // console.log(res_data);
             }
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
       

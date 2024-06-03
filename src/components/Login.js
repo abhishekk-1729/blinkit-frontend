@@ -28,7 +28,7 @@ export default function Login({dropdownRef,setTryLogin,tryLogin}) {
 
     const handleSubmit = async(event) => {
     const new_body = {phone:phoneTemp}
-    console.log(new_body);
+    // console.log(new_body);
     event.preventDefault();
     const response = await fetch("https://abhishek.nssiitd.in/ecommerce/api/auth/loginPhone",{
         method:"POST",
@@ -51,9 +51,9 @@ export default function Login({dropdownRef,setTryLogin,tryLogin}) {
             setToken(res_result.token);
         }
         else{
-            console.log("dikkat h");
+            // console.log("dikkat h");
         }
-        console.log(res_result.otp)
+        // console.log(res_result.otp)
         setPhoneSet(true);
     }
 
@@ -61,10 +61,10 @@ export default function Login({dropdownRef,setTryLogin,tryLogin}) {
 
         e.preventDefault();
         if(otp===OTP){
-            console.log("same");
-            console.log(OTP);
-            console.log(token);
-            console.log(phoneTemp);
+            // console.log("same");
+            // console.log(OTP);
+            // console.log(token);
+            // console.log(phoneTemp);
             storeTokenInLS(token);
             setPhone(phoneTemp);
             navigate("/");
@@ -72,9 +72,9 @@ export default function Login({dropdownRef,setTryLogin,tryLogin}) {
             setPhoneSet(false);
         }
         else{
-            console.log(OTP);
-            console.log(otp);
-            console.log("different")
+            // console.log(OTP);
+            // console.log(otp);
+            // console.log("different")
         }
         
     }
