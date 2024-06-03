@@ -43,7 +43,7 @@ export default function PopUp({ dropdownRef, setIsVisible }) {
                       >
                         Visit our new{" "}
                         <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text font-semibold">
-                          AI for Quick Mart
+                          Quick Mart AI
                         </span>{" "}
                         with your Order List
                       </h3>
