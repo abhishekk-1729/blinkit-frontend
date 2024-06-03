@@ -43,14 +43,14 @@ export default function PopUp({ dropdownRef, setIsVisible }) {
                       >
                         Visit our new{" "}
                         <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text font-semibold">
-                          AI for Blinkit
+                          AI for Quick Mart
                         </span>{" "}
                         with your Order List
                       </h3>
 
                       <div class=" flex justify-center ">
                         <p class="text-sl text-gray-500">
-                          Shop Smart Let's Blinkit!
+                          Shop Smart with Quick Mart!
                         </p>
                       </div>
                     </div>

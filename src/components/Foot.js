@@ -49,7 +49,7 @@ export default function Foot() {
             </div>
 
     <div className='flex gap-3 my-6'>
-      <div className='w-1/3'>© Blink Commerce Private Limited (formerly known as Grofers India Private Limited), 2016-2024</div>
+      <div className='w-1/3'>©Quick Mart Commerce Private Limited (formerly known as QuickIt India Private Limited), 2016-2024</div>
       <div className='flex justify-center items-center gap-2 w-1/3'>
         <div>Download App</div>
         <img src="/utils/appstore.png"  height={"40px"} width = {"90px"} alt="" />
@@ -64,7 +64,7 @@ export default function Foot() {
       
       </div>
     </div>
-    <div className='px-2 mb-3'>“Blinkit” is owned & managed by "Blink Commerce Private Limited" (formerly known as Grofers India Private Limited) and is not related, linked or interconnected in whatsoever manner or nature, to “GROFFR.COM” which is a real estate services business operated by “Redstone Consultancy Services Private Limited”.
+    <div className='px-2 mb-3'>“Quick Mart” is owned & managed by "Quick Mart Commerce Private Limited" (formerly known as QuickIt India Private Limited) and is not related, linked or interconnected in whatsoever manner or nature, to “QUICKER.COM” which is a real estate services business operated by “Redstone Consultancy Services Private Limited”.
     </div>
     </div>
     </Layout>
