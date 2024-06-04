@@ -31,24 +31,22 @@ import { useAuth } from './store/auth';
 
 function App() {
 
-  const dropdownRef = useRef(null);
+  // const dropdownRef = useRef(null);
 
-  const {isVisible, setIsVisible, token} = useAuth();
+  // const {isVisible, setIsVisible, token} = useAuth();
 
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsVisible(false);
-    }
-  };
+  // const handleClickOutside = (event) => {
+  //   if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  //     setIsVisible(false);
+  //   }
+  // };
 
-  document.addEventListener('mousedown', handleClickOutside);
+  // document.addEventListener('mousedown', handleClickOutside);
 
   return (
     <>
     <BrowserRouter>
     <Header/>
-    {isVisible&&!token?
-    <PopUp dropdownRef = {dropdownRef} setIsVisible={setIsVisible} />:<></>}
       <Routes>
         <Route path = "/" element={<Home/>}/>
         <Route path = "allProduct" element={<CategoryProduct/>}>

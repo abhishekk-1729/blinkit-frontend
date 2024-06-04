@@ -1,10 +1,12 @@
 import React from 'react'
-import { Profiler, useEffect, useState } from 'react';
+import { Profiler, useEffect, useState ,useRef} from 'react';
 import ProductDesc from "./ProductDesc";
 import Layout from './Layout';
 import Header from './Header.js'
 import { useAuth } from '../store/auth'
 import { Link } from 'react-router-dom';
+import PopUp from './PopUp';
+
 
 export default function Home() {
 
@@ -13,6 +15,18 @@ export default function Home() {
     const [input,setInput] = useState("");
     const {productInfo,categoryInfo} = useAuth();
     const {selectedProducts,setSelectedProducts} = useAuth();
+
+    const dropdownRef = useRef(null);
+
+    const {isVisible, setIsVisible, token} = useAuth();
+  
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsVisible(false);
+      }
+    };
+  
+    document.addEventListener('mousedown', handleClickOutside);
   
     const categoriesName = ["Paan Corner","Cold Drink & Juices","Snacks & Munchies","Breakfast Instant","Sweet Tooth","Masala","Pharma & Wellness"];
 
@@ -22,6 +36,8 @@ export default function Home() {
 
  
     <Layout>
+          {isVisible&&!token?
+    <PopUp dropdownRef = {dropdownRef} setIsVisible={setIsVisible} />:<></>}
 
 <div class="flex justify-center items-center">
   <img class="" src={"/cover/pan.jpg"}/>
