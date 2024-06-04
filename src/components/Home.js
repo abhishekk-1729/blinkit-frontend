@@ -57,7 +57,7 @@ export default function Home() {
  </div>
 
       <div >
-        {[...new Set(productInfo.map(p => p.category))].map(categoryName => (
+        {[...new Set(productInfo.map(p => p.category))].slice(0,4).map(categoryName => (
           <div key={categoryName} >
             {productInfo.find(p=>p.category===categoryName)&&(
               <div className='p-2'>
@@ -68,7 +68,7 @@ export default function Home() {
             </Link>
             </div>
             <div className='flex  overflow-x-scroll snap-x scrollbar-hide gap-4'>
-            {productInfo.filter(p => p.category === categoryName).slice(0,4).map(product => (
+            {productInfo.filter(p => p.category === categoryName).map(product => (
               <div className='flex-none lg:w-1/6'>
                 <ProductDesc _id={product._id} name={product.productName} price = {product.price} description={product.quantity} picture={product.productImage}
                 addToWhat = {selectedProducts} setAddToWhat={setSelectedProducts}
