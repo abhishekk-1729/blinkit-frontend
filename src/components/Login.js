@@ -117,7 +117,7 @@ export default function Login({dropdownRef,setTryLogin,tryLogin}) {
 
                             <div class="mx-auto flex h-16 w-full flex-shrink-0 items-center justify-center sm:mx-0 sm:h-16 sm:w-16">
                                 
-                                <img src="/icon.jpg" alt="" />
+                                <img src="/utils/quick_bg.jpg" alt="" />
                                 
                             </div>
                             </div>
